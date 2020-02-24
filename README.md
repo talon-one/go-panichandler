@@ -20,7 +20,7 @@ package main
 import (
 	"os"
 	"encoding/json"
-	"github.com/github.com/talon-one/go-panichandler"
+	"github.com/talon-one/go-panichandler"
 )
 
 func main() {
