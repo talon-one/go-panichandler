@@ -1,4 +1,4 @@
-# go-panichandler
+# go-panichandler ![](https://github.com/talon-one/go-panichandler/workflows/Test/badge.svg) [![GoDoc](https://godoc.org/github.com/Eun/yaegi-template?status.svg)](https://godoc.org/github.com/Eun/yaegi-template) [![go-report](https://goreportcard.com/badge/github.com/talon-one/go-panichandler)](https://goreportcard.com/report/github.com/talon-one/go-panichandler)
 
 Handle panics globaly.
 
