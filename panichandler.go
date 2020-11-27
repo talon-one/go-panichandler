@@ -11,6 +11,7 @@ import (
 //go:linkname fatalpanic runtime.fatalpanic
 func fatalpanic(msgs *_panic)
 
+//nolint:structcheck
 //go:linkname _panic runtime._panic
 type _panic struct {
 	argp      unsafe.Pointer // pointer to arguments of deferred call run during panic; cannot move - known to liblink
