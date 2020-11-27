@@ -5,7 +5,7 @@ import (
 
 	"sync"
 
-	"bou.ke/monkey"
+	"github.com/agiledragon/gomonkey/v2"
 )
 
 //go:linkname fatalpanic runtime.fatalpanic
@@ -37,10 +37,14 @@ var mu sync.Mutex
 type IgnorePanic struct{}
 
 func init() {
-	var guard *monkey.PatchGuard
-	guard = monkey.Patch(fatalpanic, func(v *_panic) {
-		guard.Unpatch()
-		defer guard.Restore()
+	patch()
+}
+
+func patch() {
+	var patches *gomonkey.Patches
+	patches = gomonkey.ApplyFunc(fatalpanic, func(v *_panic) {
+		patches.Reset()
+		defer patch()
 		mu.Lock()
 		defer mu.Unlock()
 		for _, handler := range handlers {
@@ -52,9 +56,6 @@ func init() {
 		}
 		fatalpanic(v)
 	})
-	if guard == nil {
-		panic("unable to patch Fatalpanic")
-	}
 }
 
 // OnPanic adds the specified handler function to the panic handler stack
